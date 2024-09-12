@@ -98,7 +98,22 @@ function loadQuestion() {
    
     document.getElementById('next-btn').style.display = 'none';
 }
+function displayOptionWithDelay(){
+    const optionsEl = document.querySelectorAll('.option-btn');
+    let optionIndex = 0;
 
+    function showNextOption() {
+        if (optionIndex < optionsEl.length) {
+            optionsEl[optionIndex].style.display = 'block';
+            optionIndex++;
+            setTimeout(showNextOption, 1000); // Show next option after 1 second
+        } else {
+            document.getElementById('next-btn').style.display = 'block'; // Show Next Question button when all options are displayed
+        }
+    }
+
+    showNextOption();
+}
 
 function displayPrizes() {
     const prizeListEl = document.getElementById('prize-list');
